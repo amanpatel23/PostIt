@@ -1,0 +1,38 @@
+#navbar__outer {
+    background: #C991D9;
+    padding: 14px;
+    position: sticky;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    /* margin-bottom: 70px; */
+}
+
+#navbar__inner {
+    display: flex;
+    /* background: red; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo__text a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.8rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+}
+
+#links {
+    display: flex;
+    font-family: 'Roboto Condensed', sans-serif;
+    column-gap: 40px;
+}
+
+#links div a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 400;
+    font-size: 1.1rem;
+}

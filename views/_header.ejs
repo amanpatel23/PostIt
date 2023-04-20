@@ -1,0 +1,27 @@
+
+<div id="navbar__outer">
+    <div id="navbar__inner">
+        <div id="logo">
+            <div id="logo__text">
+                <a href="/">PostIt</a>
+            </div>
+        </div>
+        <div id="links">
+            <% if (locals.user) { %>
+                <div id="link__ff">
+                    <a href="/users/profile/<%= user.id %>"><%= user.name %></a>
+                </div>
+                <div id="link__ss">
+                    <a href="/users/signOut">LogOut</a>
+                </div>
+            <% } else { %>
+                <div id="link__ff">
+                    <a href="/users/signIn">SignIn</a>
+                </div>
+                <div id="link__ss">
+                    <a href="/users/signUp">SignUp</a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>

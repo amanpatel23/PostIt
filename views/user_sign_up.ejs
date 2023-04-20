@@ -1,0 +1,25 @@
+
+<link rel="stylesheet" href="/css/userSignUp.css">
+
+<div id="signUp__outer">
+    <div id="signUp__inner">
+        <h3>SignUp</h3>
+        <form action="/users/createUser" method="POST">
+            <div id="form__fields">
+                <label class="field__name" for="name">Name</label>
+                <input id="name" type="text" name="name" required>
+        
+                <label class="field__name" for="email">Email</label>
+                <input id="email" type="email" name="email" required>
+            
+                <label class="field__name" for="password">Password</label>
+                <input id="password" type="password" name="password" required>
+            
+                <label class="field__name" for="confirm_password">Confirm Password</label>
+                <input id="confirm_password" type="password" name="confirm_password" required>
+            </div>
+        
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+</div>

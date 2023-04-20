@@ -1,0 +1,99 @@
+
+<link rel="stylesheet" href="/css/home.css">
+
+<div id="home__outer">
+    <div id="home__inner">
+        <div id="home__post_details">
+            <% if (locals.user) { %>
+                <div id="createPost">
+                    <h3>Create Post</h3>
+                    <form action="/posts/createPost" method="POST">
+                        <textarea name="postContent" id="" cols="40" rows="8" placeholder="Type Here..." required></textarea>
+                        <input type="submit" value="Post It">
+                    </form>
+                </div>
+            <% } %>
+
+                <div id="posts__container">
+                    <h3>Posts</h3>
+                    <ul id="posts_ul">
+                        <% for (post of posts) { %>
+                            <li>
+                                <div class="single__post__container">
+                                    <div class="post__single">
+                                        <div class="post__ff">
+                                            <% if (locals.user && locals.user.id == post.user._id) { %>
+                                                <a href="/posts/deletePost/<%= post._id %>">deleteIt</a>
+                                            <% } else { %>
+                                                <a class="pseudo__a" href="#"></a>
+                                            <% } %>
+                                            <p>- <%= post.user.name %></p>
+                                        </div>
+                                        <div class="post__ss">
+                                            <p><%= post.postContent %></p>
+                                        </div>
+                                        <div class="post__th">
+                                            <p><%= post.createdAt.toLocaleString('en-US', {
+                                                month: 'short',
+                                                day: '2-digit',
+                                                year: 'numeric',
+                                                hour: '2-digit',
+                                                minute: '2-digit'
+                                            }) %></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment__container">
+                                        <% if (locals.user) { %>
+                                            <div class="comment__form">
+                                                <form action="/comments/createComment/<%= post._id %>" method="POST">
+                                                    <input type="text" name="commentContent" placeholder="write comment" required>
+                                                    <input type="submit" value="add comment">
+                                                </form>
+                                            </div>
+                                        <% } %>
+
+                                        <div id="comments__list__container">
+                                            <ul id="comments__ul">
+                                                <% for (comment of post.comments) { %>
+                                                    <li>
+                                                        <div class="single__comment">
+                                                            <div class="single__comment__ff">
+                                                                <% if (locals.user && locals.user.id == comment.user._id) { %> 
+                                                                    <a href="/comments/deleteComment/<%= comment._id %>">DeleteIt</a>
+                                                                <% } else { %>
+                                                                    <a class="pseudo__comment" href="#"></a>
+                                                                <% } %>
+                                                                <p>- <%= comment.user.name %></p>
+                                                            </div>
+                                                            <div class="single__comment__ss">
+                                                                <p><%= comment.commentContent %></p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                <% } %>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+        </div>
+        <div id="home__friends_details">
+            <div id="friends__list">
+                <h3>Friends</h3>
+                <ul>
+                    <% for (uu of users) { %>
+                        <li>
+                            <div class="frnd__name">
+                                <a href="/users/profile/<%= uu._id %>"><%= uu.name %></a>
+                            </div>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

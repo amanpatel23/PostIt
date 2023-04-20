@@ -18,6 +18,7 @@ module.exports.signIn = function(request, response) {
 module.exports.createUser = async function(request, response) {
     
     if (request.body.password != request.body.confirm_password) {
+        request.flash('error', 'Passwords Doesn\'t Match!');
         return response.redirect('back');
     }
 
@@ -25,17 +26,20 @@ module.exports.createUser = async function(request, response) {
         const user = await User.findOne({email: request.body.email});
         if (!user) {
             await User.create(request.body);
+            request.flash('success', 'User Created Successfully!');
+            return response.redirect('/users/signIn');
+        } else {
+            request.flash('error', 'User Already Exists!')
         }
     }
     catch(error) {
         console.log('Error --> user_controller -> createUser ', error);
     }
 
-    return response.redirect('back');
+    response.redirect('back');
 }
 
 module.exports.createSession = function (request, response) {
-    console.log('loggedIn succefully');
     request.flash('success', 'Welcome Back!');
     return response.redirect('/');
 }
@@ -46,7 +50,7 @@ module.exports.destroySession = function (request, response) {
             console.log('Error --> destroySession ', error);
             return;
         }
-        request.flash('success', 'come back soon!')
+        request.flash('success', 'Come Back Soon!')
         return response.redirect('/');
     })
 }

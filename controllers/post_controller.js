@@ -8,7 +8,7 @@ module.exports.createPost = async function(request, response) {
             user: request.user._id
         })
 
-        request.flash('success', 'post created successfully!');
+        request.flash('success', 'Post Created Successfully!');
         return response.redirect('back');
     }catch (error) {
         console.log('error --> post_controller -> createPost ', error);
@@ -22,7 +22,7 @@ module.exports.deletePost = async function(request, response) {
             await Post.deleteOne({_id: post._id});
         }
 
-        request.flash('success', 'post deleted successfully!');
+        request.flash('success', 'Post Deleted Successfully!');
         return response.redirect('back');
     } catch (error) {
         console.log('error --> post_controller -> deletePost ', error);

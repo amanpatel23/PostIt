@@ -14,6 +14,7 @@ module.exports.createComment = async function (request, response) {
         post.comments.push(comment);
         post.save();
 
+        request.flash('success', 'Comment Added Successfully!');
         response.redirect('back');
     }
     catch (error) {
@@ -34,6 +35,7 @@ module.exports.deleteComment = async function (request, response) {
             })
         }
 
+        request.flash('success', 'Comment Deleted Successfully!');
         response.redirect('back');
     }
     catch (error) {

@@ -15,7 +15,12 @@ const postSchema = new Schema({
         ref: 'Comment'
     }]
 }, {
-    timestamps: true
+    timestamps: {
+        currentTime: () => {
+            const indianTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+            return new Date(indianTime);
+        }
+    }
 })
 
 const Post = mongoose.model('Post', postSchema);

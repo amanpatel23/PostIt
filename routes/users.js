@@ -12,5 +12,10 @@ router.post('/createSession', passport.authenticate('local', {
     failureRedirect: '/users/signIn'
 }), userController.createSession);
 router.get('/profile/:id', passport.checkAuthentication, userController.profile);
+router.get('/forgotPassword', userController.forgotPassword);
+router.post('/requestResetPassword', userController.requestResetPassword);
+router.get('/resetPasswordLink', userController.resetPasswordLink);
+// router.get('/resetPasswordPage', userController.resetPasswordPage);
+router.post('/resetPassword', userController.resetPassword);
 
 module.exports = router;
